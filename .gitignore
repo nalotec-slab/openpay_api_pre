@@ -7,6 +7,11 @@ yarn-error.log*
 lerna-debug.log*
 .pnpm-debug.log*
 
+#Template
+routes/01_templateRoutes.js
+controllers/01_templateController.js
+#controllers/errorController.js
+
 # Diagnostic reports (https://nodejs.org/api/report.html)
 report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
 
@@ -41,6 +46,7 @@ build/Release
 # Dependency directories
 node_modules/
 jspm_packages/
+data/
 
 # Snowpack dependency directory (https://snowpack.dev/)
 web_modules/
@@ -128,3 +134,9 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+lib/qr copy.js
+qr copy.html
+
+*.txt
+01_template*.js
+README.md
