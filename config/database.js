@@ -22,7 +22,7 @@ if (process.env.NODE_ENV === "production") {
   autoIndex = false;
 } else {
   console.log("Estoy en dev DB");
-  uri = devConnection;
+  uri = prodConnection;
   autoIndex = true;
 }
 /*

@@ -61,8 +61,11 @@ exports.rcvOpenPayResponse = catchAsync(async (req, res, next) => {
 
   if (data.type === "charge.succeeded") {
     //console.log("data (body)", data);
-    // Insertar data en Mongo DB/openpay_charge_succeeded
+
     try {
+      //Buscar si ya se envio esta respuesta
+
+      // Insertar data en Mongo DB/openpay_charge_succeeded
       const db = await mongodb.connection();
       const chargeSucceeded = db.collection("openpay_charge_succeeded");
       console.log("Insertando data en Mongo ");
@@ -109,7 +112,7 @@ exports.rcvOpenPayResponse = catchAsync(async (req, res, next) => {
           };
           try {
             const response = await axios.post(
-              "https://bss-system-core-subscriber-286291927006.us-central1.run.app/v1/subscribers/createOrder",
+              process.env.CREATE_ORDER,
               payload
             );
 
@@ -124,10 +127,7 @@ exports.rcvOpenPayResponse = catchAsync(async (req, res, next) => {
               offerIds: [dataCharge.offeringId],
             };
 
-            const response = await axios.post(
-              "https://bss-system-core-subscriber-286291927006.us-central1.run.app/v1/middleware/purchase",
-              payload
-            );
+            const response = await axios.post(process.env.PURCHASE, payload);
 
             console.log("response", response.data);
           } catch (error) {
